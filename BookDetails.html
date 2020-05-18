@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book Review Sai
+{% endblock %}
+
+{% block body %}
+	<ul class="nav nav-tabs nav-left">
+  <li style="padding-left:6em" class="active"><a href="#"> Search Book </a></li>
+ <li style="padding-left:6em"><a href="table.html"> Review Book </a></li>
+ <li style="padding-left:6em"><a href="{{ url_for('logout') }}"> Logout </a></li>
+</ul>
+    <h1>Welcome to Book Review</h1>
+	 
+	 <!--
+	 {{ Booksdetails }}
+	    
+		<h2>Available Books</h2>
+	    <ul>
+        {% for Booksdetail in Booksdetails %}
+            <li>{{ Booksdetail.isbn }}</li>
+			<li>{{ Booksdetail.title }}</li>
+			<li>{{ Booksdetail.author }}</li>
+			<li>{{ Booksdetail.year }}</li>
+        {% else %}
+            <li>No passengers.</li>
+        {% endfor %}
+    </ul>
+	-->
+	
+	<table name=table1 class="table table-hover" border=1 cellspacing=5px>
+		<tr>
+			<th>ISBN</th><th>TITLE</th><th>AUTHOR</th><th>YEAR</th>
+		</tr>
+		{% for Booksdetail in Booksdetails %}
+		<tr>
+			<td>{{ Booksdetail.isbn }}</td>	<td>{{ Booksdetail.title }}</td><td>{{ Booksdetail.author }}</td><td>{{ Booksdetail.year }}</td>	
+		{% else %}
+		<td rowspan="4">No Books Exist.</td>
+		{% endfor %}
+	</table>
+	 
+{% endblock %}
