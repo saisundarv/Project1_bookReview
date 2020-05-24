@@ -2,6 +2,8 @@
 
 {% block title %}
     Book Review Sai
+
+ 
 {% endblock %}
 
 {% block body %}
@@ -18,6 +20,7 @@
 		<h2>Available Books</h2>
 	    <ul>
         {% for Booksdetail in Booksdetails %}
+			<li>{{ Booksdetail.id }}</li>
             <li>{{ Booksdetail.isbn }}</li>
 			<li>{{ Booksdetail.title }}</li>
 			<li>{{ Booksdetail.author }}</li>
@@ -27,17 +30,17 @@
         {% endfor %}
     </ul>
 	-->
-	
+	<div style="height:300px;overflow:auto;">
 	<table name=table1 class="table table-hover" border=1 cellspacing=5px>
 		<tr>
 			<th>ISBN</th><th>TITLE</th><th>AUTHOR</th><th>YEAR</th>
 		</tr>
 		{% for Booksdetail in Booksdetails %}
 		<tr>
-			<td>{{ Booksdetail.isbn }}</td>	<td>{{ Booksdetail.title }}</td><td>{{ Booksdetail.author }}</td><td>{{ Booksdetail.year }}</td>	
+			<td style="display:none;">{{ Booksdetail.id }}</td> <td><a href="{{ url_for('bookreview_search', book_id=Booksdetail.id) }}" method="post">{{ Booksdetail.isbn }}</a> </td>	<td>{{ Booksdetail.title }}</td><td>{{ Booksdetail.author }}</td><td>{{ Booksdetail.year }}</td>	
 		{% else %}
 		<td rowspan="4">No Books Exist.</td>
 		{% endfor %}
 	</table>
-	 
+	 </div>
 {% endblock %}
