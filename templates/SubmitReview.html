@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Book Review Sai
+{% endblock %}
+
+{% block body %}
+	<ul class="nav nav-tabs nav-left">
+		<li style="padding-left:6em" class="active"><a href="#"> Search Book </a></li>
+		<li style="padding-left:6em"><a href="table.html"> Review Book </a></li>
+		<li style="padding-left:6em"><a href="{{ url_for('logout') }}"> Logout </a></li>
+	</ul>
+    <h1>Welcome to Submit Book Review</h1>
+	
+	{{ Goodreads_res }}
+	
+	
+	<div>
+		<form action="{{ url_for('submit_review') }}" method="post">	
+			<div class="form-group" style="height:300px;overflow:auto;">
+			
+
+			<ul>
+				{% for Booksdetail in Booksdetails %}
+					<li> <label width=100>ID : </label> <input type="text" id=book_id name=book_id value={{ Booksdetail.id }}></li>
+					<li> <label width=100>isbn : </label><input type="text" id=book_isbn name=book_isbn value={{ Booksdetail.isbn }}></li>
+					<li> <label width=100>title : </label><input type="text" id=title name=title value={{ Booksdetail.title }}></li>
+					<li> <label width=100>author : </label><input type="text" id=author name=author value={{ Booksdetail.author }}></li>
+					<li> <label width=100>year : </label><input type="text" id=year name=year value={{ Booksdetail.year }}></li>
+				{% endfor %}
+				
+			</ul>	
+			
+			<ul>
+				<li><label width=100>BookReviewSai Avg Rating: </label><input type="text" id=review_rating name=review_rating value={{ review_rating}}> </li>	
+				{% for Goodreads_re in Goodreads_res.books %}
+				<li><label width=100>GoodReads Revew Rating: </label><input type="text" id=goodreads_rating name=goodreads_rating value={{ Goodreads_re.average_rating }}> </li>	
+				{% endfor %}
+			</ul>
+			</div>
+			<div class="form-group">
+				<label width=100> Select the Rating </label>
+
+					<select id="rating_points" name="rating_points">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+			</div>
+			<div class="form-group" style="display:none;">
+				<ul>
+				{% for user_detail in user_details %}
+					<li> user_id : <input type="text" id=user_id name=user_id value={{ user_detail.id }}></li>
+					<li> emailid : <input type="text" id=emailid name=emailid value={{ user_detail.emailid  }}></li>
+					<li> user_name : <input type="text" id=user_name name=user_name value={{ user_detail.name }}></li>					
+				
+				{% endfor %}
+				
+				</ul>	
+			</div>
+			<div class="form-group">
+				<textarea id="review_comments" name="review_comments" rows="4" cols="50" placeholder="Enter your comments here">
+				</textarea>			
+				<button class="btn btn-primary">Submit</button>
+			</div>
+			
+		</form>
+	</div>
+{% endblock %}
