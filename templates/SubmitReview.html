@@ -6,13 +6,11 @@
 
 {% block body %}
 	<ul class="nav nav-tabs nav-left">
-		<li style="padding-left:6em" class="active"><a href="#"> Search Book </a></li>
-		<li style="padding-left:6em"><a href="table.html"> Review Book </a></li>
+
 		<li style="padding-left:6em"><a href="{{ url_for('logout') }}"> Logout </a></li>
 	</ul>
     <h1>Welcome to Submit Book Review</h1>
 	
-	{{ Goodreads_res }}
 	
 	
 	<div>
@@ -34,7 +32,7 @@
 			<ul>
 				<li><label width=100>BookReviewSai Avg Rating: </label><input type="text" id=review_rating name=review_rating value={{ review_rating}}> </li>	
 				{% for Goodreads_re in Goodreads_res.books %}
-				<li><label width=100>GoodReads Revew Rating: </label><input type="text" id=goodreads_rating name=goodreads_rating value={{ Goodreads_re.average_rating }}> </li>	
+				<li><label width=100>GoodReads Revew Rating: </label><input type="text" id=goodreads_rating name=goodreads_rating value={{ Goodreads_re.average_rating }}>  </li>	
 				{% endfor %}
 			</ul>
 			</div>
@@ -61,8 +59,7 @@
 				</ul>	
 			</div>
 			<div class="form-group">
-				<textarea id="review_comments" name="review_comments" rows="4" cols="50" placeholder="Enter your comments here">
-				</textarea>			
+				<textarea id="review_comments" name="review_comments" rows="4" cols="50" placeholder="Enter your comments here"></textarea>			
 				<button class="btn btn-primary">Submit</button>
 			</div>
 			
